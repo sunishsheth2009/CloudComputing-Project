@@ -1,0 +1,46 @@
+yum install epel-release
+yum -y install python-pip
+
+
+call(["virsh", "list"])
+from subprocess import call
+call(["cd", "/etc/libvirt/qemu/"])
+call(["mkdir", "sunish"])
+
+
+virsh snapshot-create-as $1 $2 "Vm Migration" --diskspec vda,file=/home/images/$3 --disk-only --atomic
+cd /etc/libvirt/qemu/
+cp $1.xml $2.xml
+UUID=uuidgen
+echo $UUID
+vi $2.xml
+sed -i -r 's/<uuid>[0-9]-+/<uuid>$UUID/g' $2.xml
+sed -i -r "s/<source file=.*$>/hello/g" test.sh
+sed -i -r 's/<source file=\'[a-z]/\'+/<source file=\'/home/images/$3\'/g' $2.xml
+#sed -i -r 's/IPADDRESS=[0-9].+/IPADDRESS=192.168.1.15/g' $2.xml
+virsh define $2xml
+virsh create $2.xml
+
+<source file='/home/images/snap2-testvm.qcow2'/>
+
+
+sed -i -r 's/<source file=\\'[a-z]\\/+\\'/<source file=\\'/home/images/testvm.qcow2\\'/g' test.sh
+
+sed -i -r 's/<source file=\\'/<source file=\\'123/g' test.sh
+
+
+sed -i -r "s/<source file=.*$>/hello/g" test.sh
+
+nmap -v -sn -n 192.168.1.10-20 -oG - | grep -w 'Status: Down' |awk 'FNR == 1 {print $2}'
+
+sudo qemu-img resize /home/images/centos7.0.qcow2 +25G
+qemu-img info /home/images/centos7.0.qcow2
+
+StartVM
+DestroyVM - undefine only with no snapshots
+ShutdownVM
+PauseVM
+RebootVm
+CloneVM - Exact same. No change in UUID MAC Address or even IP address
+createvm
+loadBalancing

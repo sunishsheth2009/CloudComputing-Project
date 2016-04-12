@@ -1,0 +1,1 @@
+virsh suspend $1

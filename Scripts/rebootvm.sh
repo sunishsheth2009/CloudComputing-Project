@@ -1,0 +1,1 @@
+virsh reboot $1

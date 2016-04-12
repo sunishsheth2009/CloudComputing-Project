@@ -1,0 +1,43 @@
+python main.py getips 1
+python main.py createvm Sunish sunish_virt1 1049000 7.1 'CentOs' 2 10 192.168.1.3
+python main.py createexistingvm Sunish sunish_virt10 1049000 7.1 'CentOs' 2 10 192.168.1.3 sunish_virt1 no
+
+python main.py shutdownvm sunish_virt1
+python main.py pausevm sunish_virt1
+python main.py rebootvm sunish_virt1
+python main.py destroyvm sunish_virt1
+python main.py startvm sunish_virt1
+python main.py deletevm sunish_virt1
+python main.py deleteuserdetails Sunish sunish_virt1
+
+python main.py modifyuserdetails Sunish sunish_virt1 cpu 2
+python main.py modifyuserdetails Sunish sunish_virt1 memory 2098000
+
+
+# python main.py start_monitor
+
+
+
+python main.py loadbalance vm_name i/o memory disk cpu
+python main.py migrate from_node to_node vm_name
+python main.py scaleup vm_name size
+python main.py scaledown vm_name size
+python main.py createvm username vm_name memory disk os cpu io ip_address
+python main.py createexistingvm username vm_name memory disk os cpu io ip_address img_file job_type
+python main.py destroyvm vm_name
+python main.py deletevm vm_name
+python main.py pausevm vm_name
+python main.py startvm vm_name
+python main.py shutdownvm vm_name
+python main.py rebootvm vm_name
+python main.py changememoryvm vm_name size
+python main.py changecpuvm vm_name size
+python main.py clonevm vm_name new_vm_name
+python main.py getuserdetails
+python main.py getnodedetails
+python main.py getvmdetails
+python main.py modifyuserdetails user_name vm_name parameter new_value
+python main.py deleteuserdetails user_name vm_name
+python main.py adduserdetails user_name vm_name IP_address node_name CPU memory disk io snapshot
+python main.py getips number
+python main.py start_monitor

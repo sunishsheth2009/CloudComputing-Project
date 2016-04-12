@@ -1,0 +1,37 @@
+ssh node0@10.176.68.186
+
+
+virsh snapshot-create-as node1_virt2 snap1-testvm "test snapshot" \
+  --diskspec vda,file=/home/images/snap1-testvm.qcow2 \
+  --disk-only --atomic
+
+
+
+sudo virt-install -n node4_virt2 -r 512 -f /var/lib/libvirt/centos7.1.qcow2 -s 12 -c /home/node4/Desktop/scp/CentOS-7-x86_64-Everything-1503-01.iso --vnc --noautoconsole --os-type linux --os-variant linux
+
+
+sudo virt-install --name=node1_virt2 --disk path=/var/lib/libvirt/centos7.1.qcow,size=8 -ram=512 --os-type=linux --os-variant=rhel6 -network bridge:br0 -cdrom=/home/node1/Downloads/CentOS-7-x86_64-Everything-1503-01.iso
+
+/home/images/snap2-testvm.qcow2
+
+  359  virsh snapshot-create-as node1_virt2 snap1-testvm "test snapshot" --diskspec vda,file=/home/images/snap2-testvm.qcow2 --disk-only --atomic
+  360  cd /etc/libvirt/qemu/
+  362  cp node1_virt2.xml node1_virt2_backup.xml
+  363  ls
+  364  vi node1_virt2_backup.xml
+  365  virsh define node1_virt2_backup.xml
+  366  vi node1_virt2_backup.xml
+  369  uuidgen
+  370  vi node1_virt2_backup.xml
+  371  virsh define node1_virt2_backup.xml
+  372  vi node1_virt2_backup.xml
+  373  virsh define node1_virt2_backup.xml
+  374  virsh create node1_virt2_backup.xml
+
+
+virsh snapshot-list f15guest
+
+qemu-img info /home/images/snap2-testvm.qcow2
+virsh snapshot-list node1_virt1 --tree
+
+nmap -v -sn -n 192.168.1.10-20 -oG - | grep -w 'Status: Down' |awk 'FNR == 1 {print $2}'
